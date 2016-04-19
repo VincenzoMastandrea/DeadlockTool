@@ -1,0 +1,16 @@
+
+*.class
+
+out/production/DeadlockTool/gASP.g4
+
+out/production/DeadlockTool/input.txt
+
+out/production/DeadlockTool/parser/gASP.tokens
+
+out/production/DeadlockTool/parser/gASPLexer.tokens
+
+out/production/DeadlockTool/trad.abs
+
+.idea/workspace.xml
+
+.idea/workspace.xml
