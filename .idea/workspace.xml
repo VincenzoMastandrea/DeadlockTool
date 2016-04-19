@@ -5,48 +5,84 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfda7996-d712-4f41-8077-bfcc9534e65d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/antlr_4_5_complete.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/analyser/Analyzer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/input.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Assignment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/ClassDecl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/CompilationUnit.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Declaration.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Element.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Environment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Expression.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/ExpressionBinaryOperation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/ExpressionIntValue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/ExpressionNullValue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/ExpressionSideEffects.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/ExpressionValue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/IActualValue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/IfThenElse.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Method.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/MethodCall.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Model.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/New.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/NewObject.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Program.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Return.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Skip.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Statement.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/StmtBlock.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/TypeBase.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/TypeInt.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/TypeObject.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Variable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parser/gASP.tokens" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parser/gASPBaseListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parser/gASPBaseVisitor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parser/gASPLexer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parser/gASPLexer.tokens" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parser/gASPListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parser/gASPParser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parser/gASPVisitor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/trad.abs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/translator/Translator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/translator/gAspToAbs.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/analyser/Analyzer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/gASP.g4" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/input.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/Assignment.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/ClassDecl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/CompilationUnit.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/Declaration.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/Element.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/Environment.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/Expression.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/ExpressionBinaryOperation.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/ExpressionIntValue.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/ExpressionNullValue.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/ExpressionSideEffects.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/ExpressionValue.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/IActualValue.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/IfThenElse.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/Method.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/MethodCall.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/Model.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/New.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/NewObject.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/Program.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/Return.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/Skip.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/Statement.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/StmtBlock.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/TypeBase.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/TypeInt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/TypeObject.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/models/Variable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASP.tokens" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPBaseListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPBaseVisitor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPLexer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPLexer.tokens" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ArithmeticExpressionContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$AssignStmtContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$BodyContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$BooleanExpressionContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ClassDecContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ClassSignatureContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ElementContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ElseStmtContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ExpressionContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ExpressionSideEffectContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$IfStmtContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$IntDecContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$IntTypeContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$MethodCallContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$MethodDefContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$MethodSignatureContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$NewExpContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ObjDecContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ObjTypeContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ParAritExpContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ParDefContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ProgramContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ReturnStmtContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$SecondPairContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$SkipStmtContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$StmtContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$StmtblockContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$TypeContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$TypeVariableContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ValAritExpContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$ValueContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$VarDecContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$VarDeclarationContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$VariableContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser$VariableExpContext.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPParser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/parser/gASPVisitor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/trad.abs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/translator/Translator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DeadlockTool/translator/gAspToAbs.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DeadlockTool.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -233,42 +269,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DeadlockTool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DeadlockTool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="translator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DeadlockTool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DeadlockTool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="analyser" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -587,11 +587,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298193" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277849" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22532189" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22532189" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.4698972" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="-1340" y="113" width="1280" height="757" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
