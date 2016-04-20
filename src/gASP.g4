@@ -225,7 +225,6 @@ expression returns [Expression expr]
    		    	   : v=value      				{$expr = $v.val;}
 				   | el=element 				{$expr = $el.elem;}
 				   | expra=arithmeticExpression	{$expr = $expra.exprArit;}
-				   | exprb=booleanExpression	{$expr = $exprb.exprBool;}
 				   ;
 
 newExp returns [ExpressionSideEffects expr]

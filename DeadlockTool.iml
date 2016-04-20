@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="antlr-4.5-complete" level="project" />
+    <orderEntry type="library" name="semisolver" level="project" />
   </component>
 </module>

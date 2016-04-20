@@ -1,5 +1,7 @@
 module CpxSched;
 
+class Prova (Prova a){ Int m4(){return 10;}}
+
 class CpxSched (CpxSched u) {
   Int m1(CpxSched y) {
      Int h = 0;

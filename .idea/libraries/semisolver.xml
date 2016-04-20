@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="semisolver">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/semisolver.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/semisolver.jar!/" />
+    </SOURCES>
+  </library>
+</component>
