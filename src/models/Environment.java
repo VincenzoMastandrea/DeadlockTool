@@ -28,7 +28,7 @@ public class Environment {
 	{
 		Variable var = new Variable(key);
 		var.setType(environment.get(key));
-		return var;
+		return var ;
 	}
 	
 	public void print()
