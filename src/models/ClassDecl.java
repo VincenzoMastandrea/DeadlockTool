@@ -1,13 +1,15 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.LinkedList;
 
 public class ClassDecl extends CompilationUnit {
 	
 	private String className;
 	private HashMap<String,Declaration> fields;
-	private HashMap<Integer,Declaration> parameters; 
+	private LinkedList<Declaration> parameters;
 	private HashMap<String, LinkedList<Method>> methods;
 	
 	public ClassDecl()
@@ -18,10 +20,10 @@ public class ClassDecl extends CompilationUnit {
 		this.methods = null;
 	}
 	
-	public ClassDecl(String className, 
-				 HashMap<Integer,Declaration> parameters, 
-				 HashMap<String,Declaration> fields, 
-			     HashMap<String, LinkedList<Method>> methods)
+	public ClassDecl(String className,
+					 LinkedList<Declaration> parameters,
+					 HashMap<String,Declaration> fields,
+			     	 HashMap<String, LinkedList<Method>> methods)
 	{
 		this.className = className;
 		this.parameters = parameters;
@@ -70,17 +72,19 @@ public class ClassDecl extends CompilationUnit {
 		return fields;
 	}
 	
-	public HashMap<Integer,Declaration> getParameters()
+	public LinkedList<Declaration> getParameters()
 	{
 		return parameters;
 	}
+
+
 		
 	public void setFields (HashMap<String,Declaration> fields )
 	{
 		this.fields = fields;
 	}
 	
-	public void setParameters (HashMap<Integer,Declaration> parameters )
+	public void setParameters (LinkedList<Declaration> parameters )
 	{
 		this.parameters = parameters;
 	}
@@ -90,8 +94,9 @@ public class ClassDecl extends CompilationUnit {
 	public void print(){
 		System.out.println("Class: " + className);
 		System.out.println("I parametri sono: ");
-		for (Integer key: parameters.keySet()){
-			Declaration var = parameters.get(key);  
+		for(int i=0; i<parameters.size();i++)
+		{
+			Declaration var = parameters.get(i);
   	        System.out.println(var.getType().getType() + " -> " + var.getVar().getName());  
 		}
 		System.out.println("I campi sono: ");

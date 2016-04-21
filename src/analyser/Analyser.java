@@ -1,11 +1,11 @@
 package analyser;
 
-import com.gzoumix.semisolver.factory.Factory;
-import com.gzoumix.semisolver.term.Variable;
 import models.*;
+import analyser.factory.*;
 import java.io.PrintStream;
 import com.gzoumix.semisolver.term.*;
 import com.gzoumix.semisolver.constraint.*;
+import com.gzoumix.semisolver.term.Variable;
 import com.gzoumix.semisolver.substitution.*;
 
 

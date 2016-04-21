@@ -1,9 +1,5 @@
 package analyser.inference;
 
-    import abs.frontend.ast.*;
-    import abs.frontend.typechecker.*;
-    import abs.frontend.typechecker.KindedName.Kind;
-
     import java.lang.reflect.InvocationTargetException;
     import java.lang.reflect.Method;
     import java.util.HashMap;
@@ -20,9 +16,12 @@ package analyser.inference;
     import com.gzoumix.semisolver.term.*;
     import com.gzoumix.semisolver.term.Variable;
 
-    import deadlock.analyser.AnalyserLog;
-    import deadlock.analyser.factory.*;
-    import deadlock.analyser.generation.*;
+    import analyser.AnalyserLog;
+    import analyser.factory.*;
+    import analyser.generation.*;
+    import models.ClassDecl;
+    import models.Declaration;
+    import models.Model;
 
 /**
  * @author Abel, Michael
@@ -63,7 +62,7 @@ public class ContractInference {
     // create a record instance of the particular class, living in the cog a
     public RecordPresent createInstance(ClassDecl cd, GroupName a) {
         LinkedList<RecordField> l = new LinkedList<RecordField>();
-        for (ParamDecl f : cd.getParams()) {
+        for (Declaration f : cd.getParameters()) {
             RecordVariable X = _df.newRecordVariable();
             l.add(_df.newRecordField(f.getName(), X));
         }

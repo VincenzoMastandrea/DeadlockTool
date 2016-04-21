@@ -410,7 +410,7 @@ public class gASPParser extends Parser {
 						  	    environment.putAll(currentClass.getFields());
 						  		((MethodSignatureContext)_localctx).methodSign =  new Method();
 						  	    currentMethod = _localctx.methodSign;
-						  	    HashMap<Integer,Declaration> parameters = new HashMap<>();
+						  	    LinkedList<Declaration> parameters = new LinkedList<>();
 							    HashMap<String,Declaration> varDec = new HashMap<>();
 								LinkedList<Statement> stmts = new LinkedList<>(); 
 		try {
@@ -844,7 +844,7 @@ public class gASPParser extends Parser {
 	}
 
 	public static class ParDefContext extends ParserRuleContext {
-		public HashMap<Integer,Declaration> pars;
+		public List<Declaration> pars;
 		public TypeVariableContext tv;
 		public SecondPairContext tv1;
 		public TypeVariableContext typeVariable() {
@@ -878,7 +878,7 @@ public class gASPParser extends Parser {
 	public final ParDefContext parDef() throws RecognitionException {
 		ParDefContext _localctx = new ParDefContext(_ctx, getState());
 		enterRule(_localctx, 20, RULE_parDef);
-		((ParDefContext)_localctx).pars =  new HashMap<>();
+		((ParDefContext)_localctx).pars =  new LinkedList<>();
 							  TypeBase type = null;
 					   		  Variable var = null;
 					   		  int parIndex = 0;
@@ -892,7 +892,7 @@ public class gASPParser extends Parser {
 				{
 				setState(165);
 				((ParDefContext)_localctx).tv = typeVariable();
-				 _localctx.pars.put((Integer) parIndex,((ParDefContext)_localctx).tv.par); 
+				 _localctx.pars.add((Integer) parIndex,((ParDefContext)_localctx).tv.par); 
 				}
 			}
 
@@ -904,7 +904,7 @@ public class gASPParser extends Parser {
 				{
 				setState(170);
 				((ParDefContext)_localctx).tv1 = secondPair();
-				 _localctx.pars.put((Integer) (parIndex +1),((ParDefContext)_localctx).tv1.par);
+				 _localctx.pars.add((Integer) (parIndex +1),((ParDefContext)_localctx).tv1.par);
 				}
 				}
 				setState(177);

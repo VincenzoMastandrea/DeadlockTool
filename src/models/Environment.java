@@ -4,19 +4,19 @@ import java.util.HashMap;
 
 public class Environment {
 	
-	private HashMap<String,Declaration> environment;
+	private HashMap<String,TypeBase> environment;
 	
 	public Environment()
 	{
 		environment = new HashMap<>();
 	}
 	
-	public void putAll(HashMap<String,Declaration> set)
+	public void putAll(HashMap<String,TypeBase> set)
 	{
 		environment.putAll(set);
 	}
-	
-	public void putAllInt(HashMap<Integer,Declaration> set)
+
+	public void putAllIn(HashMap<Integer,TypeBase> set)
 	{
 		for(Integer key : set.keySet())
 		{
@@ -26,7 +26,9 @@ public class Environment {
 	
 	public Variable getVar(String key)
 	{
-		return environment.get(key).getVar();
+		Variable var = new Variable(key);
+		var.setType(environment.get(key));
+		return var;
 	}
 	
 	public void print()
@@ -37,7 +39,7 @@ public class Environment {
 		
 		for(String key : environment.keySet())
 		{
-			Variable var = environment.get(key).getVar();
+			Variable var = getVar(key);
 			System.out.println(var.getName() + " --> " + var.getType().getType());
 		}
 		System.out.println("End scope");

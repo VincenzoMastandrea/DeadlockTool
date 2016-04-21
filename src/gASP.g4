@@ -68,10 +68,12 @@ classDec returns [ClassDecl classObj]
 methodSignature returns [Method methodSign]
 				  @init{environment = new Environment();
 				  	    environment.putAllInt(currentClass.getParameters());
+				  	    for(int i=0; i<currentClass.getParameters().size();i++)
+				  	        environment.put(currentClass.getParameters().get(i).)
 				  	    environment.putAll(currentClass.getFields());
 				  		$methodSign = new Method();
 				  	    currentMethod = $methodSign;
-				  	    HashMap<Integer,Declaration> parameters = new HashMap<>();
+				  	    LinkedList<Declaration> parameters = new LinkedList<>();
 					    HashMap<String,Declaration> varDec = new HashMap<>();
 						LinkedList<Statement> stmts = new LinkedList<>(); }
 				  :	returnedType=type {$methodSign.setReturnedType($returnedType.varType);}
@@ -122,13 +124,13 @@ intDec returns [Declaration dec]
      									  				     $dec = new Declaration(type,var);} )
      		   ;
 
-parDef returns [HashMap<Integer,Declaration> pars]
-				@init{$pars = new HashMap<>();
+parDef returns [LinkedList<Declaration> pars]
+				@init{$pars = new LinkedList<>();
 					  TypeBase type = null;
 			   		  Variable var = null;
 			   		  int parIndex = 0;}
-				: (tv=typeVariable { $pars.put((Integer) parIndex,$tv.par); })?
-				  (tv1= secondPair { $pars.put((Integer) (parIndex +1),$tv1.par);}   )*;
+				: (tv=typeVariable { $pars.add((Integer) parIndex,$tv.par); })?
+				  (tv1= secondPair { $pars.add((Integer) (parIndex +1),$tv1.par);}   )*;
 
 
 
