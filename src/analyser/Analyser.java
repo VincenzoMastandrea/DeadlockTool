@@ -1,5 +1,13 @@
 package analyser;
 
+import java.util.ArrayList;
+import java.util.Map;
+
+import analyser.detection.DASolver;
+import analyser.detection.FixPointSolver1;
+import analyser.detection.FixPointSolver2;
+import analyser.generation.*;
+import analyser.inference.ContractInference;
 import models.*;
 import analyser.factory.*;
 import java.io.PrintStream;
@@ -15,8 +23,12 @@ import com.gzoumix.semisolver.substitution.*;
  */
 public class Analyser {
 
-    public void deadlockAnalysis(Model m, boolean verbose, int nbIteration, int fixPointVersion, PrintStream out) {
+    private static int FixPoint1_0 = 1;
+    private static int FixPoint2_0 = 2;
+    private static int nbIteration = 2;
 
+
+    public void deadlockAnalysis(Model m, boolean verbose, int fixPointVersion, PrintStream out) {
 
         Variable.varCounter =0;
         Long totalTimeInMs = 0L;
@@ -27,8 +39,6 @@ public class Analyser {
         if(verbose) { log.verbose(); }
         ContractInference ci = new ContractInference(log, df, m);
 
-
-        ci.computeMapInterfaceToClass();
         ci.computeEnvironment();
 
      /* 1. Generate contracts */
@@ -113,23 +123,9 @@ public class Analyser {
 
     /* 2. Analyze the contract */
 
-        //if(verbose) out.println("Creating CCT...");
-        //nanoTime = System.nanoTime();
-//    Map<String, Term> cct = new HashMap<String, Term>();
-
-//    for(String k : methodMap.keySet()){
-//      if(methodMap.get(k) != null){
-//          cct.put(k, methodMap.get(k));
-//      }
-//    }
         if(verbose) out.println("Applying substitution to Main Contract...");
 
-        //cct.put("Main.main", s.apply(InferenceOutput.getMainContractPresent()));
         MainMethodContract mmc = new MainMethodContract((Contract)s.apply(InferenceOutput.getMainContractPresent()), (Contract)s.apply(InferenceOutput.getMainContractFuture()));
-//    List<Contract> mainContracts = new LinkedList<Contract>();
-//    mainContracts.add(InferenceOutput.getMainContractPresent());
-//    mainContracts.add(InferenceOutput.getMainContractFuture());
-//    cct.put("Main.main", s.apply(df.newContractSequence(mainContracts)));
 
         ellapsedTime = (System.nanoTime() - nanoTime)/1000000L;
         totalTimeInMs += ellapsedTime;

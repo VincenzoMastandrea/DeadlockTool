@@ -1,26 +1,27 @@
 package models;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Environment {
 	
-	private HashMap<String,TypeBase> environment;
+	private HashMap<String, Type> environment;
 	
 	public Environment()
 	{
 		environment = new HashMap<>();
 	}
 	
-	public void putAll(HashMap<String,TypeBase> set)
+	public void putAll(HashMap<String, Type> set)
 	{
 		environment.putAll(set);
 	}
 
-	public void putAllIn(HashMap<Integer,TypeBase> set)
+	public void putAllInt(LinkedList<Variable> list)
 	{
-		for(Integer key : set.keySet())
+		for(int i=0; i<list.size(); i++)
 		{
-			environment.put(set.get(key).getVar().getName(),set.get(key));
+			environment.put(list.get(i).getName(),list.get(i).getType());
 		}
 	}
 	
@@ -28,7 +29,7 @@ public class Environment {
 	{
 		Variable var = new Variable(key);
 		var.setType(environment.get(key));
-		return var ;
+		return var;
 	}
 	
 	public void print()

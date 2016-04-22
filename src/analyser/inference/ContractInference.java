@@ -14,14 +14,13 @@ package analyser.inference;
 
     import com.gzoumix.semisolver.constraint.Constraint;
     import com.gzoumix.semisolver.term.*;
-    import com.gzoumix.semisolver.term.Variable;
 
     import analyser.AnalyserLog;
     import analyser.factory.*;
     import analyser.generation.*;
     import models.ClassDecl;
-    import models.Declaration;
-    import models.Model;
+    import models.*;
+    import models.Variable;
 
 /**
  * @author Abel, Michael
@@ -37,7 +36,7 @@ public class ContractInference {
 
     private AnalyserLog _log;
     private Factory _df;
-    private Map<InterfaceDecl, ClassDecl> _intertoclass;
+    //private Map<InterfaceDecl, ClassDecl> _intertoclass;
     private Model _model;
     private TypingEnvironment _env;
     private GroupName _a;
@@ -48,7 +47,7 @@ public class ContractInference {
     public ContractInference(AnalyserLog log, Factory df, Model m) {
         _log   = log;
         _df    = df;
-        _intertoclass = null;
+        //_intertoclass = null;
         _model = m;
         _env = new TypingEnvironment();
         _a = null;
@@ -57,89 +56,35 @@ public class ContractInference {
 
 
     /************************************/
-  /* Helper function */
+    /* Helper function */
     /************************************/
     // create a record instance of the particular class, living in the cog a
     public RecordPresent createInstance(ClassDecl cd, GroupName a) {
         LinkedList<RecordField> l = new LinkedList<RecordField>();
-        for (Declaration f : cd.getParameters()) {
+        for (models.Variable f : cd.getParameters()) {
             RecordVariable X = _df.newRecordVariable();
             l.add(_df.newRecordField(f.getName(), X));
         }
-        for (FieldDecl f : cd.getFields()) {
+        for (models.Variable f : cd.getFieldsList()) {
             l.add(_df.newRecordField(f.getName(), _df.newRecordVariable())); // init expressions are managed in the analysis of the init block.
         }
-        ObjKindVar t = new ObjKindVar(new Variable());
+        ObjKindVar t = new ObjKindVar(new com.gzoumix.semisolver.term.Variable());
         return _df.newRecordPresent(t, a, l);
     }
 
     private RecordPresent createInstance(Type t, ClassDecl clthis, GroupName a) {
-        ClassDecl cl;
-        if (t.isInterfaceType()) { cl = _intertoclass.get(((InterfaceType) t).getDecl()); }
-        else { cl = clthis; }
-        if (cl == null) { _log.logError("Class retrival failed!!!"); } // should NEVER occur
-        return this.createInstance(cl, a);
-    }
-
-
-    /************************************/
-  /* Map Interface_name to Class_name */
-    /************************************/
-
-  /*
-   * This mapping is used so we can associate a contract to an interface, not
-   * only a class. In the original paper, there was no interfaces, and we
-   * could directly get the contract of a method call by looking to the type
-   * of the called object. In ABS, this is not true anymore, so we use this
-   * trick. This means that two classes cannot implement the same interface,
-   * otherwise we once again don't know what is the contract of the interface.
-   */
-
-    // reviewed //
-    public void computeMapInterfaceToClass() {
-        Map<InterfaceDecl, ClassDecl> res = new HashMap<InterfaceDecl, ClassDecl>();
-        for (Decl decl : _model.getDecls()) {
-            if (decl instanceof ClassDecl) {
-                // 1. Computes recursively the set of all interfaces the class extends
-                Set<InterfaceTypeUse> toAdd = new HashSet<InterfaceTypeUse>();
-                Set<InterfaceTypeUse> set = new HashSet<InterfaceTypeUse>();
-                Set<InterfaceTypeUse> tmp = new HashSet<InterfaceTypeUse>();
-                for (InterfaceTypeUse it : ((ClassDecl) decl).getImplementedInterfaceUses()) { toAdd.add(it); }
-                while (!toAdd.isEmpty()) {
-                    Iterator<InterfaceTypeUse> i = toAdd.iterator();
-                    while (i.hasNext()) {
-                        InterfaceTypeUse it = i.next();
-                        if ((!set.contains(it)) && (it.getType() instanceof InterfaceType)) {
-                            set.add(it);
-                            for (InterfaceTypeUse itin : ((InterfaceType) it.getType()).getDecl().getExtendedInterfaceUses()) { tmp.add(itin); }
-                        }
-                    }
-                    toAdd = tmp;
-                    tmp = new HashSet<InterfaceTypeUse>();
-                }
-                // 2. add these interfaces to the map
-                for (InterfaceTypeUse it : set) {
-                    InterfaceDecl d = ((InterfaceType) it.getType()).getDecl();
-                    if (res.containsKey(d)) { _log.logWarning("WARNING: the class \"" + res.get(d).getName() + "\" and \""
-                            + ((ClassDecl) decl).qualifiedName() + "\" both implement the interface \"" + d.qualifiedName()
-                            + "\"." + "This will probably cause an erroneous deadlock analysis");
-                    } else {
-                        res.put(d, (ClassDecl) decl);
-                    }
-                }
-            }
-        }
-        _intertoclass = res;
+        return this.createInstance(clthis, a);
     }
 
     /************************************/
-  /* Environment Creation */
+    /* Environment Creation */
     /************************************/
 
     public void computeEnvironment() {
         for (CompilationUnit cu : _model.getCompilationUnits()) {
             for (ModuleDecl md : cu.getModuleDecls()) {
                 for (Decl d : md.getDecls()) {
+
                     if (d instanceof ClassDecl) { computeEnvironment(((ClassDecl) d), md.getName()); }
                     else if (d instanceof FunctionDecl) { computeEnvironment(((FunctionDecl) d), md.getName()); }
                     else if (d instanceof DataTypeDecl) { computeEnvironment(((DataTypeDecl) d), md.getName()); }

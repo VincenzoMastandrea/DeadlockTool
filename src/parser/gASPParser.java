@@ -407,11 +407,13 @@ public class gASPParser extends Parser {
 		enterRule(_localctx, 6, RULE_methodSignature);
 		environment = new Environment();
 						  	    environment.putAllInt(currentClass.getParameters());
+						  	    for(int i=0; i<currentClass.getParameters().size();i++)
+						  	        environment.put(currentClass.getParameters().get(i).)
 						  	    environment.putAll(currentClass.getFields());
 						  		((MethodSignatureContext)_localctx).methodSign =  new Method();
 						  	    currentMethod = _localctx.methodSign;
-						  	    LinkedList<Declaration> parameters = new LinkedList<>();
-							    HashMap<String,Declaration> varDec = new HashMap<>();
+						  	    LinkedList<Variable> parameters = new LinkedList<>();
+							    HashMap<String,Type> varDec = new HashMap<>();
 								LinkedList<Statement> stmts = new LinkedList<>(); 
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -536,7 +538,7 @@ public class gASPParser extends Parser {
 		BodyContext _localctx = new BodyContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_body);
 		LinkedList<Statement> stmts = new LinkedList<>();
-						  	HashMap<String,Declaration> vars = null;
+						  	HashMap<String,Type> vars = null;
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -580,7 +582,7 @@ public class gASPParser extends Parser {
 	}
 
 	public static class VarDeclarationContext extends ParserRuleContext {
-		public HashMap<String,Declaration> vars;
+		public HashMap<String,Type> vars;
 		public VarDecContext v;
 		public List<VarDecContext> varDec() {
 			return getRuleContexts(VarDecContext.class);
@@ -646,7 +648,7 @@ public class gASPParser extends Parser {
 	}
 
 	public static class VarDecContext extends ParserRuleContext {
-		public Declaration dec;
+		public Variable dec;
 		public ObjDecContext od;
 		public IntDecContext id;
 		public ObjDecContext objDec() {
@@ -712,7 +714,7 @@ public class gASPParser extends Parser {
 	}
 
 	public static class ObjDecContext extends ParserRuleContext {
-		public Declaration dec;
+		public Variable dec;
 		public ObjTypeContext t;
 		public VariableContext v;
 		public TerminalNode SEMI() { return getToken(gASPParser.SEMI, 0); }
@@ -744,8 +746,6 @@ public class gASPParser extends Parser {
 	public final ObjDecContext objDec() throws RecognitionException {
 		ObjDecContext _localctx = new ObjDecContext(_ctx, getState());
 		enterRule(_localctx, 16, RULE_objDec);
-		 TypeBase type = null;
-					   		  Variable var = null; 
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -756,10 +756,7 @@ public class gASPParser extends Parser {
 			((ObjDecContext)_localctx).v = variable();
 			setState(155);
 			match(SEMI);
-			 type = ((ObjDecContext)_localctx).t.varType;
-			     									    var = ((ObjDecContext)_localctx).v.var;
-			     									    var.setType(type);
-			     									    ((ObjDecContext)_localctx).dec =  new Declaration(type,var);
+			 ((ObjDecContext)_localctx).dec =  ((ObjDecContext)_localctx).v.var.setType(((ObjDecContext)_localctx).t.varType); 
 			}
 			}
 		}
@@ -775,7 +772,7 @@ public class gASPParser extends Parser {
 	}
 
 	public static class IntDecContext extends ParserRuleContext {
-		public Declaration dec;
+		public Variable dec;
 		public IntTypeContext t;
 		public VariableContext v;
 		public TerminalNode ASSIGN() { return getToken(gASPParser.ASSIGN, 0); }
@@ -809,8 +806,6 @@ public class gASPParser extends Parser {
 	public final IntDecContext intDec() throws RecognitionException {
 		IntDecContext _localctx = new IntDecContext(_ctx, getState());
 		enterRule(_localctx, 18, RULE_intDec);
-		 TypeBase type = null;
-					   		  Variable var = null; 
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -825,10 +820,7 @@ public class gASPParser extends Parser {
 			match(NUMBER);
 			setState(162);
 			match(SEMI);
-			 type = ((IntDecContext)_localctx).t.varType;
-			     			   						  				     var = ((IntDecContext)_localctx).v.var;
-			     									  				     var.setType(type);
-			     									  				     ((IntDecContext)_localctx).dec =  new Declaration(type,var);
+			 ((IntDecContext)_localctx).dec =  ((IntDecContext)_localctx).v.var.setType(((IntDecContext)_localctx).t.varType);
 			}
 			}
 		}
@@ -844,7 +836,7 @@ public class gASPParser extends Parser {
 	}
 
 	public static class ParDefContext extends ParserRuleContext {
-		public List<Declaration> pars;
+		public LinkedList<Variable> pars;
 		public TypeVariableContext tv;
 		public SecondPairContext tv1;
 		public TypeVariableContext typeVariable() {
@@ -879,7 +871,7 @@ public class gASPParser extends Parser {
 		ParDefContext _localctx = new ParDefContext(_ctx, getState());
 		enterRule(_localctx, 20, RULE_parDef);
 		((ParDefContext)_localctx).pars =  new LinkedList<>();
-							  TypeBase type = null;
+							  Type type = null;
 					   		  Variable var = null;
 					   		  int parIndex = 0;
 		int _la;
@@ -925,7 +917,7 @@ public class gASPParser extends Parser {
 	}
 
 	public static class TypeVariableContext extends ParserRuleContext {
-		public Declaration par;
+		public Variable par;
 		public TypeContext t;
 		public VariableContext v;
 		public TypeContext type() {
@@ -956,9 +948,6 @@ public class gASPParser extends Parser {
 	public final TypeVariableContext typeVariable() throws RecognitionException {
 		TypeVariableContext _localctx = new TypeVariableContext(_ctx, getState());
 		enterRule(_localctx, 22, RULE_typeVariable);
-		 TypeBase type = null;
-					   		  		Variable var = null;
-					   		  	   
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -967,11 +956,7 @@ public class gASPParser extends Parser {
 			((TypeVariableContext)_localctx).t = type();
 			setState(179);
 			((TypeVariableContext)_localctx).v = variable();
-			 type = ((TypeVariableContext)_localctx).t.varType;
-			     								   		var = ((TypeVariableContext)_localctx).v.var;
-			     								   		var.setType(type);
-			     								   		((TypeVariableContext)_localctx).par =  new Declaration(type,var);
-												      
+			 ((TypeVariableContext)_localctx).par =  ((TypeVariableContext)_localctx).v.var.setType(((TypeVariableContext)_localctx).t.varType); 
 			}
 			}
 		}
@@ -987,7 +972,7 @@ public class gASPParser extends Parser {
 	}
 
 	public static class SecondPairContext extends ParserRuleContext {
-		public Declaration par;
+		public Variable par;
 		public TypeVariableContext tv;
 		public TerminalNode COMMA() { return getToken(gASPParser.COMMA, 0); }
 		public TypeVariableContext typeVariable() {
@@ -1037,7 +1022,7 @@ public class gASPParser extends Parser {
 	}
 
 	public static class TypeContext extends ParserRuleContext {
-		public TypeBase varType;
+		public Type varType;
 		public IntTypeContext it;
 		public ObjTypeContext ot;
 		public IntTypeContext intType() {
@@ -1103,7 +1088,7 @@ public class gASPParser extends Parser {
 	}
 
 	public static class IntTypeContext extends ParserRuleContext {
-		public TypeBase varType;
+		public Type varType;
 		public TerminalNode INT() { return getToken(gASPParser.INT, 0); }
 		public IntTypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1147,7 +1132,7 @@ public class gASPParser extends Parser {
 	}
 
 	public static class ObjTypeContext extends ParserRuleContext {
-		public TypeBase varType;
+		public Type varType;
 		public Token IDUC;
 		public TerminalNode IDUC() { return getToken(gASPParser.IDUC, 0); }
 		public ObjTypeContext(ParserRuleContext parent, int invokingState) {

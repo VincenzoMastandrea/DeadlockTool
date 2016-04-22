@@ -10,6 +10,7 @@ package analyser.generation;
         import java.util.Set;
         import java.util.HashSet;
 
+        import models.*;
         import analyser.factory.DataTypeInterface;
         import com.gzoumix.semisolver.term.Term;
         import com.gzoumix.semisolver.constraint.Constraint;
@@ -32,7 +33,7 @@ public class TypingEnvironment {
 
     // 1. Fields for declarations
     private Map<String, MethodInterface> methods; // Methods
-    private Map<String, FunctionInterface> functions; //Functions
+    //private Map<String, FunctionInterface> functions; //Functions
     private Map<String, DataTypeInterface> types; //DataTypes
 
 
@@ -47,7 +48,7 @@ public class TypingEnvironment {
     /* Constructor */
     public TypingEnvironment() {
         methods    = new HashMap<>();
-        functions  = new HashMap<>();
+        //functions  = new HashMap<>();
         types      = new HashMap<>();
         searchPath = new HashSet<>();
         variables  = new LinkedList<>();
@@ -57,7 +58,7 @@ public class TypingEnvironment {
     public TypingEnvironment copy() {
         TypingEnvironment res = new TypingEnvironment();
         res.methods = this.methods;
-        res.functions = this.functions;
+        //res.functions = this.functions;
         res.types = this.types;
         res.searchPath = this.searchPath;
         res.variables = new LinkedList<>(this.variables);
@@ -78,14 +79,14 @@ public class TypingEnvironment {
         return null;
     }
 
-    public FunctionInterface getFunction(String function) {
-        FunctionInterface res = null;
-        for(String moduleName: this.searchPath) {
-            res = functions.get(moduleName + _connector + function);
-            if(res != null) return res;
-        }
-        return null;
-    }
+//    public FunctionInterface getFunction(String function) {
+//        FunctionInterface res = null;
+//        for(String moduleName: this.searchPath) {
+//            res = functions.get(moduleName + _connector + function);
+//            if(res != null) return res;
+//        }
+//        return null;
+//    }
 
     public DataTypeInterface getDataType(String dataType) {
         DataTypeInterface res = null;
@@ -155,7 +156,7 @@ public class TypingEnvironment {
 
     /* Basic Extension */
     public void putMethod(String moduleName, String className, String methodName, MethodInterface mi) { methods.put(moduleName + _connector + className + _connector + methodName, mi); }
-    public void putFunction(String moduleName, String name, FunctionInterface func)                   { functions.put(moduleName + _connector + name, func); }
+    //public void putFunction(String moduleName, String name, FunctionInterface func)                   { functions.put(moduleName + _connector + name, func); }
     public void putDataType(String moduleName, String name, DataTypeInterface type)                        { types.put(moduleName + _connector + name, type); }
 
     public void newScope() { variables.add(0, new HashMap<String, ITypingEnvironmentVariableType>()); }

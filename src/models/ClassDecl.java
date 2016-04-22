@@ -1,15 +1,13 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.LinkedList;
 
 public class ClassDecl extends CompilationUnit {
 	
 	private String className;
-	private HashMap<String,Declaration> fields;
-	private LinkedList<Declaration> parameters;
+	private HashMap<String,Variable> fields;
+	private LinkedList<Variable> parameters;
 	private HashMap<String, LinkedList<Method>> methods;
 	
 	public ClassDecl()
@@ -21,8 +19,8 @@ public class ClassDecl extends CompilationUnit {
 	}
 	
 	public ClassDecl(String className,
-					 LinkedList<Declaration> parameters,
-					 HashMap<String,Declaration> fields,
+					 LinkedList<Variable> parameters,
+					 HashMap<String,Variable> fields,
 			     	 HashMap<String, LinkedList<Method>> methods)
 	{
 		this.className = className;
@@ -67,24 +65,31 @@ public class ClassDecl extends CompilationUnit {
 		this.methods = methods;
 	}
 	
-	public HashMap<String,Declaration> getFields()
+	public HashMap<String,Variable> getFields()
 	{
 		return fields;
 	}
 	
-	public LinkedList<Declaration> getParameters()
+	public LinkedList<Variable> getParameters()
 	{
 		return parameters;
 	}
 
-
+	public LinkedList<Variable> getFieldsList() {
+		LinkedList<Variable> list = new LinkedList<>();
+		for (String key: fields.keySet()){
+			Variable var = fields.get(key);
+			list.add(var);
+		}
+		return list;
+	}
 		
-	public void setFields (HashMap<String,Declaration> fields )
+	public void setFields (HashMap<String,Variable> fields )
 	{
 		this.fields = fields;
 	}
 	
-	public void setParameters (LinkedList<Declaration> parameters )
+	public void setParameters (LinkedList<Variable> parameters )
 	{
 		this.parameters = parameters;
 	}
@@ -96,13 +101,13 @@ public class ClassDecl extends CompilationUnit {
 		System.out.println("I parametri sono: ");
 		for(int i=0; i<parameters.size();i++)
 		{
-			Declaration var = parameters.get(i);
-  	        System.out.println(var.getType().getType() + " -> " + var.getVar().getName());  
+			Variable var = parameters.get(i);
+  	        System.out.println(var.getType().getType() + " -> " + var.getName());
 		}
 		System.out.println("I campi sono: ");
 		for (String key: fields.keySet()){
-			Declaration var = fields.get(key);  
-			System.out.println(var.getType().getType() + " -> " + var.getVar().getName());  
+			Variable var = fields.get(key);
+			System.out.println(var.getType().getType() + " -> " + var.getName());
 		}
 		System.out.println("I metodi sono: ");
 		for (String key: methods.keySet()){

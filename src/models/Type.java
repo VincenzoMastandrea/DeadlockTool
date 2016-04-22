@@ -5,11 +5,11 @@ package models;
  * Represents the types used in a program. 
  */
 
-public abstract class TypeBase{
+public abstract class Type {
 	
 	private String type;
 	
-	public TypeBase(String type)
+	public Type(String type)
 	{
 		this.type = type;
 	}

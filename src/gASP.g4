@@ -73,8 +73,8 @@ methodSignature returns [Method methodSign]
 				  	    environment.putAll(currentClass.getFields());
 				  		$methodSign = new Method();
 				  	    currentMethod = $methodSign;
-				  	    LinkedList<Declaration> parameters = new LinkedList<>();
-					    HashMap<String,Declaration> varDec = new HashMap<>();
+				  	    LinkedList<Variable> parameters = new LinkedList<>();
+					    HashMap<String,Type> varDec = new HashMap<>();
 						LinkedList<Statement> stmts = new LinkedList<>(); }
 				  :	returnedType=type {$methodSign.setReturnedType($returnedType.varType);}
 				    methodName=IDLC {$methodSign.setMethodName($methodName.text);}
@@ -92,41 +92,31 @@ methodDef returns [Method method]
 
 body returns [StmtBlock stb]
 			 @init{LinkedList<Statement> stmts = new LinkedList<>();
-				  	HashMap<String,Declaration> vars = null;}
+				  	HashMap<String,Type> vars = null;}
 			 : LCBRACK (v=varDeclaration {vars=$v.vars; environment.putAll(vars);}) (st=stmt {stmts.add($st.s);})* RCBRACK {$stb = new StmtBlock(vars,stmts);}
 			 ;
 
 
-varDeclaration returns [HashMap<String,Declaration> vars]
+varDeclaration returns [HashMap<String,Type> vars]
 				       @init{ $vars = new HashMap<>();}
 		               : (v=varDec {$vars.put($v.dec.getVar().getName(),$v.dec);})*;
 
-varDec returns [Declaration dec]
+varDec returns [Variable dec]
      		: od = objDec  {$dec = $od.dec;}
      		| id = intDec  {$dec = $id.dec;}
      		;
 
-objDec returns [Declaration dec]
-			   @init{ TypeBase type = null;
-			   		  Variable var = null; }
-     		: (t=objType v=variable SEMI  { type = $t.varType;
-     									    var = $v.var;
-     									    var.setType(type);
-     									    $dec = new Declaration(type,var);} )
+objDec returns [Variable dec]
+     		: (t=objType v=variable SEMI  { $dec = $v.var.setType($t.varType); } )
      		;
 
-intDec returns [Declaration dec]
-			   @init{ TypeBase type = null;
-			   		  Variable var = null; }
-     		   : (t=intType v=variable ASSIGN NUMBER SEMI  { type = $t.varType;
-     			   						  				     var = $v.var;
-     									  				     var.setType(type);
-     									  				     $dec = new Declaration(type,var);} )
+intDec returns [Variable dec]
+     		   : (t=intType v=variable ASSIGN NUMBER SEMI  { $dec = $v.var.setType($t.varType);} )
      		   ;
 
-parDef returns [LinkedList<Declaration> pars]
+parDef returns [LinkedList<Variable> pars]
 				@init{$pars = new LinkedList<>();
-					  TypeBase type = null;
+					  Type type = null;
 			   		  Variable var = null;
 			   		  int parIndex = 0;}
 				: (tv=typeVariable { $pars.add((Integer) parIndex,$tv.par); })?
@@ -134,30 +124,23 @@ parDef returns [LinkedList<Declaration> pars]
 
 
 
-typeVariable returns [Declaration par]
-				     @init{ TypeBase type = null;
-			   		  		Variable var = null;
-			   		  	   }
-					 : (t=type v=variable { type = $t.varType;
-     								   		var = $v.var;
-     								   		var.setType(type);
-     								   		$par = new Declaration(type,var);
-									      })
+typeVariable returns [Variable par]
+					 : (t=type v=variable { $par = $v.var.setType($t.varType); })
 					 ;
 
-secondPair returns [Declaration par]
+secondPair returns [Variable par]
 				: COMMA tv=typeVariable {$par=$tv.par;}
 				;
 
 
-type returns [TypeBase varType]
+type returns [Type varType]
             : it=intType   {$varType = $it.varType;}
             | ot=objType   {$varType = $ot.varType;};
 
-intType returns [TypeBase varType]
+intType returns [Type varType]
             : INT  {$varType = new TypeInt();};
 
-objType returns [TypeBase varType]
+objType returns [Type varType]
             : IDUC   {$varType = new TypeObject($IDUC.text);};
 
 

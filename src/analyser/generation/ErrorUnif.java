@@ -18,24 +18,41 @@
 /*                                                                        */
 /**************************************************************************/
 
-package analyser.factory;
+package analyser.generation;
 
 import java.util.List;
+import java.util.Iterator;
+import java.util.LinkedList;
 
-import models.ASTNode;
+import com.gzoumix.semisolver.constraint.SolvingErrorUnif;
+import com.gzoumix.semisolver.constraint.Edge;
+import com.gzoumix.semisolver.constraint.History;
+import com.gzoumix.semisolver.constraint.Information;
 
-import com.gzoumix.semisolver.term.Term;
+public class ErrorUnif implements GenerationError { 
 
-public class ContractElement extends GenericStructuredTerm {
+  private Edge edge;
+  private List<ErrorEdge> origin;
 
-  private ASTNode node;
+  public ErrorUnif(SolvingErrorUnif err) {
+    edge = err.getEdge();
+    origin = new LinkedList<ErrorEdge>();
+    for(Information info : edge.getHistory().getInformations()) { origin.add(new ErrorEdge((ASTNodeInformation)info)); }
+  }
 
-  /* Constructors */
-  public ContractElement(ASTNode n, String name, List<Term> l) { super(name, l); node = n; }
-  public ContractElement(String name, List<Term> l) { super(name, l); }
-
-  /* Basic Get */
-  public ASTNode getPosition() { return node; }
+  public String getHelpMessage() {
+    String res = "*********************\n";
+    res = res  + "* Cannot solve edge: " + edge.toString() + "\n";
+    res = res  + "* Generated from:\n***\n";
+    Iterator<ErrorEdge> it = origin.iterator();
+    while(it.hasNext()) {
+      res = res + it.next().getHelpMessage();
+      if(it.hasNext()) { res = res + "\n***\n"; } else { res = res + "\n"; }
+    }
+    res = res  + "*********************";
+    return res;
+  }
 
 }
+
 

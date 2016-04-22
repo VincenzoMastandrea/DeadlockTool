@@ -18,24 +18,12 @@
 /*                                                                        */
 /**************************************************************************/
 
-package analyser.factory;
+package analyser.generation;
 
-import java.util.List;
+public interface GenerationError { 
 
-import models.ASTNode;
-
-import com.gzoumix.semisolver.term.Term;
-
-public class ContractElement extends GenericStructuredTerm {
-
-  private ASTNode node;
-
-  /* Constructors */
-  public ContractElement(ASTNode n, String name, List<Term> l) { super(name, l); node = n; }
-  public ContractElement(String name, List<Term> l) { super(name, l); }
-
-  /* Basic Get */
-  public ASTNode getPosition() { return node; }
+  public String getHelpMessage();
 
 }
+
 

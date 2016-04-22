@@ -6,10 +6,10 @@ import java.util.LinkedList;
 public class StmtBlock extends Statement{
 	
 	private final static String STMTTYPE = "Block";
-	private HashMap<String,Declaration> varDec;
+	private HashMap<String,Type> varDec;
 	private LinkedList<Statement> stmts; 
 		
-	public StmtBlock(HashMap<String,Declaration> varDec, LinkedList<Statement> stmts)
+	public StmtBlock(HashMap<String,Type> varDec, LinkedList<Statement> stmts)
 	{
 		super(STMTTYPE);
 		this.varDec = varDec;
@@ -23,7 +23,7 @@ public class StmtBlock extends Statement{
 		this.stmts = null;
 	}
 	
-	public HashMap<String,Declaration> getVars()
+	public HashMap<String,Type> getVars()
 	{
 		return varDec;
 	}
@@ -38,7 +38,7 @@ public class StmtBlock extends Statement{
 		this.stmts = stmts;
 	}
 	
-	public void setVarDec(HashMap<String,Declaration> varDec)
+	public void setVarDec(HashMap<String,Type> varDec)
 	{
 		this.varDec = varDec;
 	}
@@ -47,13 +47,12 @@ public class StmtBlock extends Statement{
 	public void print() {
 		System.out.println("Le variabili sono: ");
 		for (String key: varDec.keySet()){
-			Declaration var = varDec.get(key);  
-			System.out.println(var.getType().getType() + " -> " + var.getVar().getName());  
+			System.out.println(varDec.get(key) + " -> " + key);
 		}
 		for(int i=0;i<stmts.size();i++)
 		{ String s;
-		  System.out.println(i +") " + stmts.get(i).toString());}
+		  System.out.println(i +") " + stmts.get(i).toString());
+		}
 
-		
 	}
 }

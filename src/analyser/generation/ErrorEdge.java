@@ -18,24 +18,17 @@
 /*                                                                        */
 /**************************************************************************/
 
-package analyser.factory;
+package analyser.generation;
 
-import java.util.List;
+import abs.frontend.analyser.SemanticError;
+import abs.frontend.analyser.ErrorMessage;
+import com.gzoumix.semisolver.constraint.Information;
 
-import models.ASTNode;
 
-import com.gzoumix.semisolver.term.Term;
+public class ErrorEdge extends SemanticError { 
 
-public class ContractElement extends GenericStructuredTerm {
-
-  private ASTNode node;
-
-  /* Constructors */
-  public ContractElement(ASTNode n, String name, List<Term> l) { super(name, l); node = n; }
-  public ContractElement(String name, List<Term> l) { super(name, l); }
-
-  /* Basic Get */
-  public ASTNode getPosition() { return node; }
+  public ErrorEdge(ASTNodeInformation info) {
+    super(info.getNode(), ErrorMessage.DEADLOCK_GENERATION_ERROR, info.getEdge().toString()); }
 
 }
 

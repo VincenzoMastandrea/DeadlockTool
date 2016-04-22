@@ -1,6 +1,6 @@
 package models;
 
-public class TypeInt extends TypeBase {
+public class TypeInt extends Type {
 
 	private final static String TYPE = "Int";
 	

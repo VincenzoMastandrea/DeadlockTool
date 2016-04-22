@@ -7,9 +7,9 @@ package models;
 public class Variable extends Element {
 	
 	private String name;
-	private TypeBase type;
+	private Type type;
 	
-	public Variable(String name, TypeBase type) {
+	public Variable(String name, Type type) {
 		this.type = type;
 		this.name = name;
 	}
@@ -23,11 +23,11 @@ public class Variable extends Element {
 		return name;
 	}
 	
-	public TypeBase getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(TypeBase type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 

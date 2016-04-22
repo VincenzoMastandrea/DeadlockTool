@@ -21,6 +21,7 @@ public class Tester {
 
     public static final String tradPath = "src/trad.abs";
     public static final String logPath = "src/log.txt";
+    public static final boolean verbose = true;
 
     public static void main(String[] args) throws Exception {
         try {
@@ -42,9 +43,6 @@ public class Tester {
         // TODO Auto-generated method stub
         try {
             final Model model = this.parse(args);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 //        if (model.hasParserErrors() || model.hasErrors() || model.hasTypeErrors())
 //        {
 //            System.out.println("Error!");   //****
@@ -53,12 +51,16 @@ public class Tester {
 
         System.out.println("Starting deadlock analysis...");   //****
 
-//        if (verbose) {
-//            System.out.println("Starting deadlock analysis...");
-//        }
+        if (verbose) {
+            System.out.println("Starting deadlock analysis...");
+        }
         /*Instantiate the analyzer and perform deadlock analysis*/
-//        Analyser a = new Analyser();
-//        a.deadlockAnalysis(model, verbose, numberOfIterations, fixpointVersion, System.out);
+        Analyser a = new Analyser();
+        a.deadlockAnalysis(model, verbose, System.out);
+        //a.deadlockAnalysis(model, verbose, numberOfIterations, fixpointVersion, System.out);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Model parse(String[] args) throws Exception {

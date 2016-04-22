@@ -1,13 +1,12 @@
 package models;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Method extends CompilationUnit{
 	
-	private TypeBase returnedType;
+	private Type returnedType;
 	private String methodName;
-	private LinkedList<Declaration> parameters;
+	private LinkedList<Variable> parameters;
 	private StmtBlock body;
 	private String id;
 	
@@ -19,7 +18,7 @@ public class Method extends CompilationUnit{
 		this.body		  = null;
 	}
 		
-	public Method(TypeBase returnedType, String methodName, LinkedList<Declaration> parameters, StmtBlock body)
+	public Method(Type returnedType, String methodName, LinkedList<Variable> parameters, StmtBlock body)
 	{
 		this.returnedType = returnedType;
 		this.methodName   = methodName;
@@ -27,11 +26,11 @@ public class Method extends CompilationUnit{
 		this.body 		  = body;
 	}
 
-	public TypeBase getReturnedType() {
+	public Type getReturnedType() {
 		return returnedType;
 	}
 
-	public void setReturnedType(TypeBase returnedType) {
+	public void setReturnedType(Type returnedType) {
 		this.returnedType = returnedType;
 	}
 	
@@ -43,7 +42,7 @@ public class Method extends CompilationUnit{
 		this.methodName = methodName;
 	}
 	
-	public LinkedList<Declaration> getParameters()
+	public LinkedList<Variable> getParameters()
 	{
 		return parameters;
 	}
@@ -53,7 +52,7 @@ public class Method extends CompilationUnit{
 		return body;
 	}
 	
-	public void setParameters(LinkedList<Declaration> parameters)
+	public void setParameters(LinkedList<Variable> parameters)
 	{
 		this.parameters = parameters;
 	}
@@ -77,8 +76,8 @@ public class Method extends CompilationUnit{
 		{
 			for (int i=0; i<parameters.size();i++)
 			{
-				Declaration var = parameters.get(i);
-				if (!(var.getType().getType().equals(m.getParameters().get(i).getType().getType())))
+				Variable var = parameters.get(i);
+				if (!(var.getType().equals(m.getParameters().get(i).getType())))
 					return false;
 			}
 		}
@@ -110,8 +109,8 @@ public class Method extends CompilationUnit{
 		System.out.println("tipo di ritorno: " + returnedType.toString());
 		System.out.println("I parametri sono: ");
 		for (int i=0; i<parameters.size();i++){
-			Declaration var = parameters.get(i);
-			System.out.println(var.getType().getType() + " -> " + var.getVar().getName());  
+			Variable var = parameters.get(i);
+			System.out.println(var.getType().getType() + " -> " + var.getName());
 		}
 		System.out.println("Il corpo é: ");
 		body.print();		
