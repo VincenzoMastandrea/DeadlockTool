@@ -3,8 +3,8 @@ package analyser.generation;
 import java.util.Map;
 import java.util.HashMap;
 
+import analyser.factory.EnvironmentMethod;
 import com.gzoumix.semisolver.constraint.Constraint;
-import com.gzoumix.semisolver.term.Term;
 import analyser.factory.MethodContract;
 import analyser.factory.Contract;
 
@@ -12,24 +12,22 @@ public class ResultInference {
 
   private HashMap<String, MethodContract> methods;
   private Constraint constraint;
+  private EnvironmentMethod theta;
 
-  private Contract mainCP;
-  private Contract mainCF;
+  private Contract contract;
 
   /* Constructor */
   public ResultInference(){
     this.methods = new HashMap<String, MethodContract>();
     this.constraint = null;
-    this.mainCP = null;
-    this.mainCF = null;
+    this.contract = null;
     }
 
   /* Basic Get */
 
   public Map<String, MethodContract> getMethods(){ return this.methods; }
   public Constraint getConstraint(){ return this.constraint; }
-  public Contract getMainContractPresent() { return mainCP; }
-  public Contract getMainContractFuture() { return mainCF; }
+  public Contract getMainContract() { return contract; }
 
 
   /* Basic Estension */
@@ -45,12 +43,12 @@ public class ResultInference {
   public void add(ResultInference r) {
     this.methods.putAll(r.methods);
     this.add(r.constraint);
-    if(r.getMainContractPresent() != null) {
-      setMain(r.getMainContractPresent(), r.getMainContractFuture());
+    if(r.getMainContract() != null) {
+      setMain(r.getMainContract());
     }
   }
 
-  public void setMain(Contract cp, Contract cf) { this.mainCP = cp; this.mainCF = cf; }
+  public void setMain(Contract c) { this.contract = c;}
 
 }
 

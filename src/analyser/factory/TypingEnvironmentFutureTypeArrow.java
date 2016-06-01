@@ -4,13 +4,16 @@
  */
 package analyser.factory;
 
-public class TypingEnvironmentFutureTypeUntick implements ITypingEnvironmentFutureType {
+public class TypingEnvironmentFutureTypeArrow implements ITypingEnvironmentFutureType {
 
     IRecord r;
 
-    public TypingEnvironmentFutureTypeUntick(IRecord r){
+    public TypingEnvironmentFutureTypeArrow(IRecord r){
         this.r = r;
+        
     }
     
     public IRecord getRecord(){return r;}
+    
+    
 }

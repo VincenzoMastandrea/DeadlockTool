@@ -11,7 +11,12 @@ public class Environment {
 	{
 		environment = new HashMap<>();
 	}
-	
+
+	public void put(String s, Type t)
+	{
+		environment.put(s,t);
+	}
+
 	public void putAll(HashMap<String, Type> set)
 	{
 		environment.putAll(set);

@@ -9,5 +9,9 @@ public class TypeObject extends Type implements IActualValue {
 	public TypeObject (String objClass){
 		super(objClass);
 	}
-	
+
+	public boolean isInt(){ return false; }
+
+	public boolean isObj(){ return true; }
+
 }

@@ -1,5 +1,3 @@
-module CpxSched;
-
 class Prova (Prova a){ Int m4(){return 10;}}
 
 class CpxSched (CpxSched u) {
@@ -25,7 +23,7 @@ class CpxSched (CpxSched u) {
      if (g == 2) {h = y.m2(u); h = y.m2(u);}
      else {g = y.m2(y); g = y.m2(y);}
      h = z.m3();
-     w = h + 1;
+     w = h + 1 * 9 + 58;
      return w;}
 
    Int m3(){ return 10; }

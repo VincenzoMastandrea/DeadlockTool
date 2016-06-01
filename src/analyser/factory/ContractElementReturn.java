@@ -20,42 +20,25 @@
 
 package analyser.factory;
 
-import java.util.List;
-import java.util.ArrayList;
-
-import abs.frontend.ast.ASTNode;
-
 import com.gzoumix.semisolver.term.Term;
+import models.ASTNode;
 
-public class ContractElementSyncInvk extends ContractElement {
+import java.util.ArrayList;
+import java.util.List;
 
-  public static String prefix = "ContractSyncInvk-";
+public class ContractElementReturn extends ContractElement {
 
+  public static String name = "ContractReturn";
 
   /* Constructors */
-  public ContractElementSyncInvk(String name, List<Term> l) { super(name, l); }
-  public ContractElementSyncInvk(ASTNode pos, String nameClass, String nameMethod, MethodInterface mi){
-    super(pos, prefix + nameClass + "." + nameMethod, new ArrayList<Term>(1));
-    subterms.add(mi);
+  public ContractElementReturn(List<Term> l) { super(name, l); }
+  public ContractElementReturn(ASTNode pos, IRecord a, GroupName b){
+    super(pos, name, new ArrayList<Term>(2));
+    subterms.add(a);
+    subterms.add(b);
   }
 
   /* Basic Get */
-  public String getClassName() {
-    int begin = this.getConstructor().lastIndexOf("-") + 1;
-    int end = this.getConstructor().lastIndexOf(".");
-    return this.getConstructor().substring(begin, end);
-  }
-
-  public String getMethodName() {
-    int begin = this.getConstructor().lastIndexOf(".") + 1;
-    return this.getConstructor().substring(begin);
-  }
-
-  public MethodInterface getMethodInterface() { return (MethodInterface)this.getSubTerms().get(0); }
-
-  /* toString */
-  public String toString() { return this.getClassName() + "." + this.getMethodName() + ": " + this.getMethodInterface().toString(); }
 
 }
-
 

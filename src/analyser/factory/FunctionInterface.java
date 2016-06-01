@@ -24,20 +24,5 @@ public class FunctionInterface extends GenericStructuredTerm {
         this.subterms.addAll(l);
         this.subterms.add(rreturn);
     }
-    
-//    public FunctionInterface generalize(Factory df) {
-//        Set<TermVariable> s = this.fvTerm();
-//        HashMap<Variable, TermVariable> map = new HashMap<>();
-//        
-//        for(TermVariable v: s)
-//            map.put(v.getVariable(), df.freshTermVariableFromTerm(v));
-//   
-//        FunctionInterface res = df.clone(this);
-//        for(Map.Entry<Variable, TermVariable>entry : map.entrySet()) {
-//            res.substitute(entry.getKey(), entry.getValue()));
-//            
-//        }
-//        return res;
-//    }
 
 }

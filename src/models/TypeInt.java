@@ -8,5 +8,9 @@ public class TypeInt extends Type {
 		super(TYPE);
 		// TODO Auto-generated constructor stub
 	}
+
+	public boolean isInt(){ return true; }
+
+	public boolean isObj(){ return false; }
 	
 }

@@ -8,10 +8,12 @@ package models;
 public abstract class Type {
 	
 	private String type;
+	private boolean isFuture;
 	
 	public Type(String type)
 	{
 		this.type = type;
+        this.isFuture = false;
 	}
 	
 	public String getType() {
@@ -21,6 +23,10 @@ public abstract class Type {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public boolean isFuture() { return isFuture; }
+
+	public void setFuture(boolean future) { isFuture = future; }
 	
 	public String toString()
 	{

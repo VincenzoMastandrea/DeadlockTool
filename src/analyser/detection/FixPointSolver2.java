@@ -10,10 +10,8 @@ import java.util.Set;
 
 import analyser.factory.Contract;
 import analyser.factory.ContractElement;
-import analyser.factory.ContractElementAwait;
 import analyser.factory.ContractElementGet;
 import analyser.factory.ContractElementInvk;
-import analyser.factory.ContractElementInvkA;
 import analyser.factory.ContractElementInvkG;
 import analyser.factory.ContractElementParallel;
 import analyser.factory.ContractElementSyncInvk;
@@ -120,28 +118,6 @@ public class FixPointSolver2 extends DASolver {
         w.addCouple(a, b);
        
         // compose and return the solution <w,wPrime>
-        l.setW(w);
-        l.setWPrime(wPrime);
-        return l;       
-    }
-
-    // The rule W-Azero of the Analysis
-    private DoubleLam wAwait(String mName, ContractElementAwait cAwait, VarSubstitution bFresh){
-        // it will contains the result of the application of the rule
-        DoubleLam l = new DoubleLam();
-
-        // here we extract the 2 variable from the contractGet and apply on them the fresh renaming (bTilde)
-        GroupName a = cAwait.whosWaiting();
-        GroupName b = cAwait.whosWaited();
-        a = bFresh.apply(a);
-        b = bFresh.apply(b);
-
-        // here we calculate the solution of the application of the rule
-        Lam w = new Lam();
-        Lam wPrime = new Lam();
-        w.addCoupleAwait(a, b);
-        
-        // we compose and return the solution <w,wPrime>
         l.setW(w);
         l.setWPrime(wPrime);
         return l;       
@@ -351,83 +327,6 @@ public class FixPointSolver2 extends DASolver {
         return l;       
     }
 
-    // The rule W-AInvk of the Analysis
-    private DoubleLam wAInvk(String mName, ContractElementInvkA cAInvk, VarSubstitution bFresh){
-        // it will contains the result of the application of the rule
-        DoubleLam l = new DoubleLam();
-
-        // here I split cGInvk between the invocation cInvk and the get cGet
-        ContractElementInvk cInvk = cAInvk.getInvk();
-        ContractElementAwait cAwait = cAInvk.getAwait();
-
-        // here I recover and clear the method called, after that I have a string that identify it
-        String method = cInvk.getClassName() +"."+ cInvk.getMethodName();
-        //System.out.println("method called is " + method.toString());
-
-        //here we recover the bigLamp of the method called and also is methodContract
-        BigLam bLamp = lampMap.get(method);
-        MethodContract methodContract = (MethodContract) methodMap.get(method);
-  
-        //The two Lamp of methodInvokation rule
-        Lam w = new Lam(); //this is done to avoid side effect
-        w.addLamp(bLamp.getFirst());
-        Lam wPrime = new Lam();
-        wPrime.addLamp(bLamp.getSecond());
-
-        //here we create and apply the second substitution, 'thisRecord' of method called got to be replaced with
-        //'thisRecord' of the call inside the contract that we are analyzing
-        VarSubstitution subThis;
-        MethodInterface interfaceCaller = cInvk.getMethodInterface();
-        IRecord thisCaller = interfaceCaller.getThis();
-        MethodInterface interfaceCalled = methodContract.getMethodInterface();
-        IRecord thisCalled = interfaceCalled.getThis();
-        //System.out.println("thisCaller = " + thisCaller.toString());
-        //System.out.println("thisCalled = " + thisCalled.toString());
-        subThis = findSub(thisCaller, thisCalled, bFresh);
-        //System.out.println("subThis = " + subThis.toString());
-        w.apply(subThis);
-        wPrime.apply(subThis);
-
-        //here we create and apply the third substitution, 'argsRecord' of method called got to be replaced with
-        //'argsRecord' of the call inside the contract that we are analyzing
-        VarSubstitution subArgs;
-        List<IRecord> argsCaller = interfaceCaller.getParameters();
-
-        List<IRecord> argsCalled = interfaceCalled.getParameters();
-
-        for(Integer i = 0 ; i<argsCaller.size() ; i++){
-            subArgs = findSub(argsCaller.get(i), argsCalled.get(i), bFresh);
-            w.apply(subArgs);
-            wPrime.apply(subArgs);
-        }
-
-        //here we create and apply the third substitution, 'retRecord' of method called got to be replaced with
-        //'retRecord' of the call inside the contract that we are analyzing
-        VarSubstitution subRet;
-        IRecord retCaller =  interfaceCaller.getResult();
-        IRecord retCalled =  interfaceCalled.getResult();
-      
-        subRet = findSub(retCaller, retCalled, bFresh);
-       
-        w.apply(subRet);
-        wPrime.apply(subRet);
-
-        // here we extract the 2 variable from the contractGet and apply on them the fresh renaming (bTilde)
-        GroupName a = cAwait.whosWaiting();
-        GroupName b = cAwait.whosWaited();
-       
-        a = bFresh.apply(a);
-        b = bFresh.apply(b);
-     
-        // we add the get Pair of names at the two lamps
-        w.addCoupleAwait(a, b);
-        
-        // we compose and return the solution <w,wPrime>
-        l.setW(w);
-        l.setWPrime(wPrime);
-        return l;       
-    }
-
     // The rule W-Union of the Analysis
     private DoubleLam wUnion(String mName, ContractElementUnion contr, VarSubstitution bFresh){
 
@@ -470,9 +369,6 @@ public class FixPointSolver2 extends DASolver {
             if(c instanceof ContractElementGet) {
                 DoubleLam lr = wGet(mName, (ContractElementGet) c, bFresh);
                 l.seqComposition(lr);   
-            }else if(c instanceof ContractElementAwait) {
-                DoubleLam lr = wAwait(mName, (ContractElementAwait) c, bFresh);
-                l.seqComposition(lr);   
             }else if(c instanceof ContractElementSyncInvk){ //this means that contr is a ContractSyncInvk
                 DoubleLam lr = wSyncInvk(mName, (ContractElementSyncInvk) c, bFresh);
                 l.seqComposition(lr);   
@@ -481,9 +377,6 @@ public class FixPointSolver2 extends DASolver {
                 l.seqComposition(lr);   
             }else if(c instanceof ContractElementInvkG){
                 DoubleLam lr = wGInvk(mName, (ContractElementInvkG) c, bFresh);
-                l.seqComposition(lr);   
-            }else if(c instanceof ContractElementInvkA){
-                DoubleLam lr = wAInvk(mName, (ContractElementInvkA) c, bFresh);
                 l.seqComposition(lr);   
             }else if(c instanceof ContractElementUnion){
                 DoubleLam lr = wUnion(mName, (ContractElementUnion) c, bFresh);

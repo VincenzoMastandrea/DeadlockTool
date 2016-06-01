@@ -18,17 +18,39 @@
 /*                                                                        */
 /**************************************************************************/
 
-package analyser.generation;
+package analyser.factory;
 
-import abs.frontend.analyser.SemanticError;
-import abs.frontend.analyser.ErrorMessage;
-import com.gzoumix.semisolver.constraint.Information;
+import java.util.List;
+import java.util.ArrayList;
 
+import models.ASTNode;
 
-public class ErrorEdge extends SemanticError { 
+import com.gzoumix.semisolver.term.Term;
 
-  public ErrorEdge(ASTNodeInformation info) {
-    super(info.getNode(), ErrorMessage.DEADLOCK_GENERATION_ERROR, info.getEdge().toString()); }
+public class ContractElementSync extends ContractElement {
+
+  public static String name = "ContractSync";
+
+  /* Constructors */
+  public ContractElementSync(List<Term> l) { super(name, l); }
+  public ContractElementSync(ASTNode pos, GroupName a, GroupName b){
+    super(pos, name, new ArrayList<Term>(4));
+    subterms.add(a);
+    subterms.add(b);
+  }
+
+  
+  /* Basic Get */
+  public GroupName whosWaiting() { return (GroupName)subterms.get(0); }
+  public RunningMethod whosWaitingMethod() { return (RunningMethod)subterms.get(1); }
+  public GroupName whosWaited() { return (GroupName)subterms.get(2); }
+  public RunningMethod whosWaitedMethod() { return (RunningMethod)subterms.get(3); }
+
+  /* toString */
+  public String toString() {
+    return "(" + (this.whosWaiting().toString()) + "," + (this.whosWaited().toString()) + ")";
+  }
+
 
 }
 

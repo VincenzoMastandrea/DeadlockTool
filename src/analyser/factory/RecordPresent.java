@@ -24,9 +24,7 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Iterator;
 
-import abs.frontend.typechecker.Type;
 import com.gzoumix.semisolver.term.Term;
-import com.gzoumix.semisolver.term.TermStructured;
 
 public class RecordPresent extends GenericStructuredTerm implements IRecord {
 
@@ -34,11 +32,11 @@ public class RecordPresent extends GenericStructuredTerm implements IRecord {
 
   /* Constructors */
   public RecordPresent(List<Term> l) { super(name, l); }
-  public RecordPresent(ObjKind t, GroupName a, List<RecordField> fields) {
+
+  public RecordPresent(ObjKind t, GroupName a) {
     super(name, new LinkedList<Term>());
     subterms.add(t);
     subterms.add(a);
-    subterms.addAll(fields);
   }
   
 /* Basic Get */

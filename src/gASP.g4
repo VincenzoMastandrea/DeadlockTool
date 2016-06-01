@@ -23,7 +23,7 @@ program returns [Program prog]
 				@init{HashMap<String, ClassDecl> classMap = new HashMap<>();
 					  classTable = classMap;
 				}
-				:   MOD IDUC SEMI (classDec {classMap.put($classDec.classObj.getClassName(),$classDec.classObj);})* main=body
+				:   (classDec {classMap.put($classDec.classObj.getClassName(),$classDec.classObj);})* main=body
 				    {$prog = new Program(classMap, $main.stb);};
 
 
@@ -68,8 +68,6 @@ classDec returns [ClassDecl classObj]
 methodSignature returns [Method methodSign]
 				  @init{environment = new Environment();
 				  	    environment.putAllInt(currentClass.getParameters());
-				  	    for(int i=0; i<currentClass.getParameters().size();i++)
-				  	        environment.put(currentClass.getParameters().get(i).)
 				  	    environment.putAll(currentClass.getFields());
 				  		$methodSign = new Method();
 				  	    currentMethod = $methodSign;
@@ -99,7 +97,7 @@ body returns [StmtBlock stb]
 
 varDeclaration returns [HashMap<String,Type> vars]
 				       @init{ $vars = new HashMap<>();}
-		               : (v=varDec {$vars.put($v.dec.getVar().getName(),$v.dec);})*;
+		               : (v=varDec {$vars.put($v.dec.getName(),$v.dec.getType());})*;
 
 varDec returns [Variable dec]
      		: od = objDec  {$dec = $od.dec;}
@@ -107,11 +105,11 @@ varDec returns [Variable dec]
      		;
 
 objDec returns [Variable dec]
-     		: (t=objType v=variable SEMI  { $dec = $v.var.setType($t.varType); } )
+     		: (t=objType v=variable SEMI  { $v.var.setType($t.varType); $dec = $v.var; } )
      		;
 
 intDec returns [Variable dec]
-     		   : (t=intType v=variable ASSIGN NUMBER SEMI  { $dec = $v.var.setType($t.varType);} )
+     		   : (t=intType v=variable ASSIGN NUMBER SEMI  { $v.var.setType($t.varType); $dec = $v.var;} )
      		   ;
 
 parDef returns [LinkedList<Variable> pars]
@@ -125,7 +123,7 @@ parDef returns [LinkedList<Variable> pars]
 
 
 typeVariable returns [Variable par]
-					 : (t=type v=variable { $par = $v.var.setType($t.varType); })
+					 : (t=type v=variable { $v.var.setType($t.varType); $par = $v.var; })
 					 ;
 
 secondPair returns [Variable par]
@@ -181,7 +179,7 @@ elseStmt returns [Statement s]
                ;
 
 
-returnStmt returns [Statement s] : RETURN e=expression SEMI {$s = new Return($e.expr);};
+returnStmt returns [Statement s] : RETURN v=value SEMI {$s = new Return($v.val);};
 
 
 
@@ -248,12 +246,13 @@ booleanExpression returns [Expression exprBool]
 
 value returns [ExpressionValue val]
 			  : NULL   	  {$val = new ExpressionNullValue();}
+			  | THIS      {$val = new ExpressionThisValue();}
 			  | n=NUMBER  {$val = new ExpressionIntValue(Integer.parseInt($n.text));}
 			  ;
 
 element returns [Element elem]
                 : IDLC   	 {$elem = environment.getVar($IDLC.text);}
-                | t=THIS     {$elem = new ExpressionValue($t.text);}
+                | THIS     {$elem = new ExpressionThisValue();}
                 ;
 
 

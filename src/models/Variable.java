@@ -8,7 +8,7 @@ public class Variable extends Element {
 	
 	private String name;
 	private Type type;
-	
+
 	public Variable(String name, Type type) {
 		this.type = type;
 		this.name = name;
@@ -34,7 +34,7 @@ public class Variable extends Element {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String toString() {
 		return name;
 	}

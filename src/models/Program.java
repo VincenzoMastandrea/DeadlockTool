@@ -4,25 +4,41 @@
 package models;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * @author Vincenzo Mastandrea
  * Base class for an ASP program
  */
 public class Program extends CompilationUnit {
-	
+
+
+
+	private String programName;
 	private HashMap<String, ClassDecl> classSpec;
 	private StmtBlock mainFunction;
-	
-	//setter
+
 	public Program(HashMap<String, ClassDecl> classSpec, StmtBlock mainFunction)
 	{
 		this.classSpec = classSpec;
 		this.mainFunction = mainFunction;
 	}
-	
-	
-	//getter
+
+	public Program(HashMap<String, ClassDecl> classSpec, StmtBlock mainFunction, String name)
+	{
+		this.classSpec = classSpec;
+		this.mainFunction = mainFunction;
+		this.programName = name;
+	}
+
+	public String getProgramName() {
+		return programName;
+	}
+
+	public void setProgramName(String programName) {
+		this.programName = programName;
+	}
+
 	public StmtBlock getMF()
 	{ 
 		return mainFunction;
@@ -37,8 +53,7 @@ public class Program extends CompilationUnit {
 	{
 		return classSpec;
 	}
-	
-	
+
 	public void print(){
 		System.out.println("Il programma ha le classi:");
 		for (String key: classSpec.keySet()){

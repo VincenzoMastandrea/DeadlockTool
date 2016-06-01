@@ -56,7 +56,7 @@ public class Tester {
         }
         /*Instantiate the analyzer and perform deadlock analysis*/
         Analyser a = new Analyser();
-        a.deadlockAnalysis(model, verbose, System.out);
+        a.deadlockAnalysis(model, verbose, 1, System.out);
         //a.deadlockAnalysis(model, verbose, numberOfIterations, fixpointVersion, System.out);
         } catch (Exception e) {
             e.printStackTrace();

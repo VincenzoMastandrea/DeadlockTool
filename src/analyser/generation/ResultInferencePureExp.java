@@ -25,7 +25,6 @@ public class ResultInferencePureExp {
   public Constraint getConstraint() {return this.constraint; }
 
   public boolean isDataType() { return (r instanceof RecordDataType); }
-
 	
 }
 

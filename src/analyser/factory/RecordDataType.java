@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import abs.frontend.typechecker.DataTypeType;
 import com.gzoumix.semisolver.term.Term;
 import com.gzoumix.semisolver.term.TermVariable;
 import com.gzoumix.semisolver.term.Variable;
@@ -23,12 +22,12 @@ public class RecordDataType extends GenericStructuredTerm implements IRecord{
         
     }
     
-    public RecordDataType(DataTypeType type, List<IRecord> r){
-        super(_prefix + (type.getModuleName() == null ? type.getSimpleName():(type.getModuleName() + "." + type.getSimpleName())), new LinkedList<Term>());
-        
-        subterms.addAll(r);
-    }
-    
+//    public RecordDataType(DataTypeType type, List<IRecord> r){
+//        super(_prefix + (type.getModuleName() == null ? type.getSimpleName():(type.getModuleName() + "." + type.getSimpleName())), new LinkedList<Term>());
+//
+//        subterms.addAll(r);
+//    }
+
     public String getDataTypeName(){
         return getConstructor().substring(_prefix.length());
     }

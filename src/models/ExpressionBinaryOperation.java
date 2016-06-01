@@ -12,9 +12,9 @@ public class ExpressionBinaryOperation extends Expression {
 	
 	/**
 	 * Creates a new binary operation
-	 * @param leftSide: left operand
+	 * @param leftOperand: left operand
 	 * @param operator: one of the allowed operators {+, -, >=, <=, =, !=, &&, ||}
-	 * @param rightSide: right operand
+	 * @param rightOperand: right operand
 	 */
 	public ExpressionBinaryOperation(Expression leftOperand, String operator, Expression rightOperand) {
 		this.leftOperand = leftOperand;

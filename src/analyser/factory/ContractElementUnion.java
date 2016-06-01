@@ -23,7 +23,7 @@ package analyser.factory;
 import java.util.List;
 import java.util.LinkedList;
 
-import abs.frontend.ast.ASTNode;
+import models.ASTNode;
 
 import com.gzoumix.semisolver.term.Term;
 

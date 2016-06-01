@@ -5,7 +5,14 @@
 package analyser.factory;
 
 public class TypingEnvironmentVariableTypeFuture implements ITypingEnvironmentVariableType{
-    
-    
+
+    IRecord r;
+
+    public TypingEnvironmentVariableTypeFuture(IRecord r){
+        this.r = r;
+
+    }
+
+    public IRecord getRecord(){return r;}
     
 }

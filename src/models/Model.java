@@ -1,5 +1,5 @@
 package models;
 
-public class Model extends ASTNode {
 
+public class Model extends ASTNode {
 }

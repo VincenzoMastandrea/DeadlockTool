@@ -22,14 +22,14 @@ import parser.gASPParser;
 
 public class Translator {
 	
-	public static void translate(gASPParser parser, ParseTree tree)
-	{
-		// Create a generic parse tree walker that can trigger callbacks
-		ParseTreeWalker walker = new ParseTreeWalker();
-		// Walk the tree created during the parse, trigger callbacks
-		walker.walk(new gAspToAbs(parser.classTable), tree);
-		System.out.println(); 
-	}
-	
+//	public static void translate(gASPParser parser, ParseTree tree)
+//	{
+//		// Create a generic parse tree walker that can trigger callbacks
+//		ParseTreeWalker walker = new ParseTreeWalker();
+//		// Walk the tree created during the parse, trigger callbacks
+//		walker.walk(new gAspToAbs(parser.classTable), tree);
+//		System.out.println();
+//	}
+//
 	
 }

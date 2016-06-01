@@ -3,21 +3,21 @@ package models;
 public class Return extends Statement{
 
 	private final static String STMTTYPE = "Return";
-	private Expression returnedExp;
+	private Variable returnedVariable;
 	
-	public Return(Expression returnedExp) {
+	public Return(Variable returnedVariable) {
 		super(STMTTYPE);
 		// TODO Auto-generated constructor stub
-		this.returnedExp = returnedExp;
+		this.returnedVariable = returnedVariable;
 	}
 	
-	public void setReturnedExp(Expression returnedExp)
+	public void setReturnedExp(Variable returnedVariable)
 	{
-		this.returnedExp = returnedExp;
+		this.returnedVariable = returnedVariable;
 	}
 	
-	public Expression getReturnedExp()
+	public Variable getReturnedExp()
 	{
-		return returnedExp;
+		return returnedVariable;
 	}
 }

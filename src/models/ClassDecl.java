@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class ClassDecl extends CompilationUnit {
 	
 	private String className;
-	private HashMap<String,Variable> fields;
+	private HashMap<String,Type> fields;
 	private LinkedList<Variable> parameters;
 	private HashMap<String, LinkedList<Method>> methods;
 	
@@ -20,7 +20,7 @@ public class ClassDecl extends CompilationUnit {
 	
 	public ClassDecl(String className,
 					 LinkedList<Variable> parameters,
-					 HashMap<String,Variable> fields,
+					 HashMap<String,Type> fields,
 			     	 HashMap<String, LinkedList<Method>> methods)
 	{
 		this.className = className;
@@ -65,7 +65,7 @@ public class ClassDecl extends CompilationUnit {
 		this.methods = methods;
 	}
 	
-	public HashMap<String,Variable> getFields()
+	public HashMap<String,Type> getFields()
 	{
 		return fields;
 	}
@@ -78,13 +78,13 @@ public class ClassDecl extends CompilationUnit {
 	public LinkedList<Variable> getFieldsList() {
 		LinkedList<Variable> list = new LinkedList<>();
 		for (String key: fields.keySet()){
-			Variable var = fields.get(key);
+			Variable var = new Variable(key,fields.get(key));
 			list.add(var);
 		}
 		return list;
 	}
 		
-	public void setFields (HashMap<String,Variable> fields )
+	public void setFields (HashMap<String,Type> fields )
 	{
 		this.fields = fields;
 	}
@@ -106,7 +106,7 @@ public class ClassDecl extends CompilationUnit {
 		}
 		System.out.println("I campi sono: ");
 		for (String key: fields.keySet()){
-			Variable var = fields.get(key);
+			Variable var = new Variable(key,fields.get(key));
 			System.out.println(var.getType().getType() + " -> " + var.getName());
 		}
 		System.out.println("I metodi sono: ");
