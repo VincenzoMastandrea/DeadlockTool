@@ -1,44 +1,39 @@
-/**************************************************************************/
-/*  Implementation of a simple semi-unification algorithm (Henglein 1993) */
-/*  Copyright (C) 2012. Michael Lienhardt                                 */
-/*                                                                        */
-/*  This program is free software; you can redistribute it and/or modify  */
-/*  it under the terms of the GNU General Public License as published by  */
-/*  the Free Software Foundation; version 2 of the License.               */
-/*                                                                        */
-/*  This program is distributed in the hope that it will be useful, but   */
-/*  WITHOUT ANY WARRANTY; without even the implied warranty of            */
-/*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU     */
-/*  General Public License for more details.                              */
-/*                                                                        */
-/*  You should have received a copy of the GNU General Public License     */
-/*  along with this program; if not, write to the Free Software           */
-/*  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA         */
-/*  02110-1301 USA                                                        */
-/*                                                                        */
-/**************************************************************************/
-
+/**
+ * Created by vmastand on 01/06/16.
+ */
 package analyser.factory;
 
-import com.gzoumix.semisolver.term.Term;
+import java.util.List;
+import java.util.ArrayList;
+
 import models.ASTNode;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.gzoumix.semisolver.term.Term;
 
 public class ContractElementReturn extends ContractElement {
 
-  public static String name = "ContractReturn";
+    public static String name = "ContractGet";
 
-  /* Constructors */
-  public ContractElementReturn(List<Term> l) { super(name, l); }
-  public ContractElementReturn(ASTNode pos, IRecord a, GroupName b){
-    super(pos, name, new ArrayList<Term>(2));
-    subterms.add(a);
-    subterms.add(b);
-  }
+    /* Constructors */
+    public ContractElementReturn(List<Term> l) { super(name, l); }
+    public ContractElementReturn(ASTNode pos, IRecord a, GroupName b){
+        super(pos, name, new ArrayList<Term>(2));
+        subterms.add(a);
+        subterms.add(b);
+    }
 
-  /* Basic Get */
+
+    /* Basic Get */
+    public GroupName whosWaiting() { return (GroupName)subterms.get(0); }
+    public RunningMethod whosWaitingMethod() { return (RunningMethod)subterms.get(1); }
+    public GroupName whosWaited() { return (GroupName)subterms.get(2); }
+    public RunningMethod whosWaitedMethod() { return (RunningMethod)subterms.get(3); }
+
+    /* toString */
+    public String toString() {
+        return "(" + (this.whosWaiting().toString()) + "," + (this.whosWaited().toString()) + ")";
+    }
+
 
 }
 

@@ -32,7 +32,6 @@ public class ContractElementInvk extends ContractElement {
   public static String prefix = "ContractInvk-";
 
   /* Constructors */
-  public ContractElementInvk(String name, List<Term> l) { super(name, l); } // DO NOT USE !!!
   public ContractElementInvk(ASTNode pos, GroupName f){
     super(pos, prefix + f.toString(), new ArrayList<Term>(1));
     subterms.add(f);

@@ -40,13 +40,11 @@ public class Contract extends GenericStructuredTerm {
   /* Basic Extension */
   public void add(Contract c) { subterms.addAll(c.subterms); }
 
-  // TODO: remove because uselless now.
-  
   /* Basic Get */
   public List<ContractElement> getList() {
-    List<ContractElement> res = new LinkedList<ContractElement>();
+    List<ContractElement> res = new LinkedList<>();
     for(Term t : getSubTerms()) { 
-        res.add((ContractElement)t); 
+        res.add((ContractElement) t);
     }
     return res;
   }
